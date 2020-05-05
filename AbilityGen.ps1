@@ -78,7 +78,7 @@ $outcomes[5] = $F
 
 #$outcomes -join(", ")
 #read-abilities $outcomes
-verify-generated $outcomes 27 | select orderedabilities, costvalidate, totalcost, rawmodsum, rawmodavg
+verify-generated $outcomes 27 | select orderedabilities, orderedmodifiers, costvalidate, totalcost, rawmodsum, rawmodavg | Format-Table -AutoSize | Out-File -Width 4096 -FilePath C:\Users\Hackspace\Desktop\abilities.txt -Append
 }
 }
 }
