@@ -44,13 +44,13 @@ if (#($checkval.rawmodsum -ge 8.5) -or
     ($checkval.rawmodmid -gt $checkval.rawmodavg) -or 
     #($checkval.rawmodavg -ge 8.5) -or 
     #($checkval.rawmodsum -le 3) -or 
-    #($checkval.rawmodmid -lt 1) -or 
+    ($checkval.rawmodmid -lt 1) -or 
     ($checkval.RawMod2nd -lt -0.5) -or ($checkval.RawMod2nd -ge 0.5)-or 
     ($checkval.RawMod2nd -le [math]::Truncate($checkval.RawModmin)) -or 
-    ($checkval.RawModmin -le -2 ) -or 
+    #($checkval.RawModmin -le -2 ) -or 
     ($checkval.RawMod5th -ge [math]::Truncate($checkval.RawModmax)) -or 
-    ($checkval.CostValidate -lt 0.8)-or ($checkval.CostValidate -gt 1.2)-or 
-    ($checkval.TotalCost -gt $tc) -or ($checkval.TotalCost -lt [math]::Truncate($tc*0.9))
+    ##($checkval.CostValidate -lt 0.8)-or ($checkval.CostValidate -gt 1.2)-or 
+    ($checkval.TotalCost -gt [math]::Truncate($tc*1.05)) -or ($checkval.TotalCost -lt [math]::Truncate($tc*0.95))
     ){
     #do nothing
      #$checkval 
@@ -78,7 +78,7 @@ $outcomes[5] = $F
 
 #$outcomes -join(", ")
 #read-abilities $outcomes
-verify-generated $outcomes 27 
+verify-generated $outcomes 27 | select orderedabilities, costvalidate, totalcost, rawmodsum, rawmodavg
 }
 }
 }
